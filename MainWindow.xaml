@@ -3,11 +3,17 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:wf="clr-namespace:System.Windows.Forms;assembly=System.Windows.Forms"
+        xmlns:fi="clr-namespace:System.Windows.Forms.Integration;assembly=WindowsFormsIntegration"
+        xmlns:axNH="clr-namespace:AxCOMMOCXLib;assembly=AxInterop.COMMOCXLib"
         xmlns:local="clr-namespace:HP_log_csharp"
         mc:Ignorable="d"
-        Title="해외 시세 log" Height="300" Width="400" ResizeMode="NoResize" SizeToContent="WidthAndHeight" Topmost="True" WindowState="Normal" Closed="Window_Closed">
+        Title="해외 시세 log" Height="300" Width="400" ResizeMode="NoResize" SizeToContent="WidthAndHeight" Topmost="True" WindowState="Normal" Loaded="Window_Loaded" Closed="Window_Closed">
 
     <Grid>
+        <fi:WindowsFormsHost>
+            <axNH:AxCommOCX x:Name="axNHOCX" />
+        </fi:WindowsFormsHost>
         <Label Content="IP" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Height="23"/>
         <TextBox x:Name="ED_IP" HorizontalAlignment="Left" Height="23" Margin="29,10,0,0" TextWrapping="Wrap" Text="255.255.255.255" VerticalAlignment="Top" Width="101" RenderTransformOrigin="0.958,2.087"/>
         <Label Content="Port" HorizontalAlignment="Left" Margin="195,10,0,0" VerticalAlignment="Top" Height="23"/>
@@ -24,7 +30,7 @@
         <Label Content="Label" HorizontalAlignment="Left" Margin="0,76,0,0" VerticalAlignment="Top" Height="2" ClipToBounds="True" BorderBrush="Black" Background="#FFA0A0A0" Width="392"/>
         <Button x:Name="BTN_RESIST" Content="Resist" HorizontalAlignment="Left" Margin="307,94,0,0" VerticalAlignment="Top" Width="75" Click="BTN_RESIST_Click" />
         <Button x:Name="BTN_UNRESIST" Content="Unregist" HorizontalAlignment="Left" Margin="307,122,0,0" VerticalAlignment="Top" Width="75" Click="BTN_UNRESIST_Click"/>
-        <ListBox HorizontalAlignment="Left" Height="140" Margin="10,122,0,0" VerticalAlignment="Top" Width="135" />
+        <ListBox x:Name="LIST_PMCODE" HorizontalAlignment="Left" Height="140" Margin="10,122,0,0" VerticalAlignment="Top" Width="135" KeyUp="LIST_PMCODE_KeyUp"/>
 
 
     </Grid>
