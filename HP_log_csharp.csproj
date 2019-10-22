@@ -103,5 +103,11 @@
   <ItemGroup>
     <Folder Include="Resource\" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="winformNHlib\winformNHlib\winformNHlib.csproj">
+      <Project>{482174e5-d286-4672-80c2-63c626798afe}</Project>
+      <Name>winformNHlib</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

@@ -13,6 +13,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using winformNHlib;
 
 namespace HP_log_csharp
 {
@@ -28,15 +29,22 @@ namespace HP_log_csharp
 
         private string m_strIniFile;
         private List<string> m_arrPM = new List<string>();
-        //private winformNHlib.NHAxControl m_nhctr;
+        private winformNHlib.NHAxControl m_nhctr;
+        private NHAxControl.RealDataReceived OnRealDataReceived;
 
         public MainWindow()
         {
             InitializeComponent();
 
-            
+
+            this.OnRealDataReceived += new winformNHlib.NHAxControl.RealDataReceived(OnRealData);
 
             ReadIni();
+        }
+
+        public void OnRealData(object sender, winformNHlib.MyRealDataEventArgs e)
+        {
+
         }
 
         private void Window_Closed(object sender, EventArgs e)
@@ -110,8 +118,8 @@ namespace HP_log_csharp
 
         private void BTN_LOGIN_Click(object sender, RoutedEventArgs e)
         {
-            //m_nhctr.CommLogin(ED_ID.Text, ED_PASSWORD.Password.ToString(), ED_PASSWORD2.Password.ToString());
-            axNHOCX.OCommLogin(ED_ID.Text, ED_PASSWORD.Password.ToString(), ED_PASSWORD2.Password.ToString());
+            m_nhctr.CommLogin(ED_ID.Text, ED_PASSWORD.Password.ToString(), ED_PASSWORD2.Password.ToString());
+            //axNHOCX.OCommLogin(ED_ID.Text, ED_PASSWORD.Password.ToString(), ED_PASSWORD2.Password.ToString());
         }
 
         private void BTN_RESIST_Click(object sender, RoutedEventArgs e)
@@ -172,12 +180,12 @@ namespace HP_log_csharp
 
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
-            //System.Windows.Forms.Integration.WindowsFormsHost host =
-            //    new System.Windows.Forms.Integration.WindowsFormsHost();
+            System.Windows.Forms.Integration.WindowsFormsHost host =
+                new System.Windows.Forms.Integration.WindowsFormsHost();
 
-            //m_nhctr = new winformNHlib.NHAxControl();
+            m_nhctr = new winformNHlib.NHAxControl();
 
-            //host.Child = m_nhctr;
+            host.Child = m_nhctr;
 
             
         }
